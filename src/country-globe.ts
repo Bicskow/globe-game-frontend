@@ -121,7 +121,7 @@ export default class CountryGlobe {
     this.progressElement.style.zIndex = "1";
     this.progressElement.style.position = "absolute";
     this.progressElement.style.top =
-      (this.container.clientWidth / 2).toString() + "px";
+      (this.container.clientHeight / 2).toString() + "px";
     this.progressElement.style.left = "25px";
     this.progressElement.style.textAlign = "center";
 
