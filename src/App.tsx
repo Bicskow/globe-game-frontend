@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import Globe from "./components/Globe";
+import MainPage from "./components/MainPage";
 
 function App() {
-  return <Globe></Globe>;
+  return <MainPage></MainPage>;
 }
 
 export default App;
