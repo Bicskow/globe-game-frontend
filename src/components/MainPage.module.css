@@ -1,0 +1,50 @@
+.main-page {
+  background-image: url("../assets/lucas-george-wendt-IYm2PCy0f8c-unsplash.jpg");
+  position: relative;
+  display: flex;
+  background-size: cover;
+  height: 100%;
+}
+
+.main-page--form {
+  height: 400px;
+  width: 66%;
+  max-width: 500px;
+  min-width: 310px;
+  position: relative;
+  background-color: white;
+  border-radius: 30px;
+  margin: auto;
+  background-color: #48bfe3;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-rows: 10% 15% 10% 15% 40%;
+  padding: 2rem;
+}
+
+.main-page--form input,
+.main-page--form select,
+.main-page--form label {
+  height: 3rem;
+}
+
+.main-page--form input[type="button"] {
+  align-self: end;
+  border-radius: 0.5rem;
+  background-color: #80ffdb;
+  width: 15rem;
+  margin: 0 auto;
+  border: none;
+}
+
+.main-page--form input[type="button"]:hover {
+  background-color: #00cc92;
+}
+
+.main-page--form input[type="button"]:active {
+  background-color: #80ffdb;
+}
+
+.main-page--form label {
+  font-weight: bold;
+}
