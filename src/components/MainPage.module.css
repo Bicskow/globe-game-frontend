@@ -47,4 +47,7 @@
 
 .main-page--form label {
   font-weight: bold;
+  display: inline-block;
+  height: 1rem;
+  align-self: center;
 }
