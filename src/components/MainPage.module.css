@@ -10,13 +10,13 @@
   height: 400px;
   width: 66%;
   max-width: 500px;
-  min-width: 310px;
+  min-width: 384px;
   position: relative;
   background-color: white;
   border-radius: 30px;
   margin: auto;
   background-color: #48bfe3;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   display: grid;
   grid-template-rows: 10% 15% 10% 15% 40%;
   padding: 2rem;
@@ -26,15 +26,18 @@
 .main-page--form select,
 .main-page--form label {
   height: 3rem;
+  font-size: 1.5rem;
 }
 
 .main-page--form input[type="button"] {
+  font-weight: bold;
   align-self: end;
   border-radius: 0.5rem;
   background-color: #80ffdb;
   width: 15rem;
   margin: 0 auto;
   border: none;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .main-page--form input[type="button"]:hover {
@@ -47,7 +50,8 @@
 
 .main-page--form label {
   font-weight: bold;
+  font-size: 1.5rem;
   display: inline-block;
-  height: 1rem;
+  height: 2rem;
   align-self: center;
 }
