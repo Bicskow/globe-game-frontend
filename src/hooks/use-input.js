@@ -15,18 +15,12 @@ const useInput = (validateInput) => {
     setInputTouced(true);
   };
 
-  const reset = () => {
-    setInputValue("");
-    setInputTouced(false);
-  };
-
   return {
     inputValue,
     inputIsValid,
     inputHasError,
     inputChangeHandler,
     inputBlurHandler,
-    reset,
   };
 };
 

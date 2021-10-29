@@ -8,7 +8,6 @@ const Main = () => {
     inputHasError: nickNameHasError,
     inputChangeHandler: nickNameChangeHandler,
     inputBlurHandler: nickNameBlurHandler,
-    reset: nickNameReset,
   } = useInput((nickName: string) => nickName !== "");
 
   const nickNameInputClasses = nickNameHasError ? classes["invalid"] : "";
@@ -30,7 +29,11 @@ const Main = () => {
           <option value="quiz">Quiz</option>
           <option value="find-country">Find the country</option>
         </select>
-        <input type="button" value="Start Game"></input>
+        <input
+          disabled={!nickNameIsValid}
+          type="button"
+          value="Start Game"
+        ></input>
       </form>
     </main>
   );
