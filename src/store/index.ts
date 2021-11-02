@@ -1,6 +1,10 @@
 import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = { nickname: "" };
+interface GameState {
+  nickname: string;
+}
+
+const initialState: GameState = { nickname: "" };
 
 const gameSlice = createSlice({
   name: "game",
