@@ -1,12 +1,22 @@
-import { createStore } from "redux";
+import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
 
-const gameReducer = (state = { nickname: "" }, action: { type: string }) => {
-  if (action.type === "setNickname") {
-    return { nickname: "dummy" };
-  }
-  return state;
-};
+const initialState = { nickname: "" };
 
-const store = createStore(gameReducer);
+const gameSlice = createSlice({
+  name: "game",
+  initialState,
+  reducers: {
+    setNickname(state, action: PayloadAction<string>) {
+      state.nickname = action.payload;
+    },
+  },
+});
 
+const store = configureStore({
+  reducer: { game: gameSlice.reducer },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export const gameActions = gameSlice.actions;
 export default store;
