@@ -1,12 +1,14 @@
 import classes from "./MainPage.module.css";
 import useInput from "../hooks/use-input";
 import { useAppDispatch } from "../hooks/redux-hooks";
-import { gameActions } from "../store";
+import { gameActions, GameType } from "../store";
 import Game from "./Game";
 import React from "react";
+import { useState } from "react";
 
 const Main = () => {
   const dispatch = useAppDispatch();
+  const [selectedGame, setSelectedGame] = useState(GameType[GameType.None]);
 
   const {
     inputValue: nickName,
@@ -20,6 +22,13 @@ const Main = () => {
 
   const startGameHandler = (event: React.MouseEvent<HTMLInputElement>) => {
     dispatch(gameActions.setNickname(nickName));
+    dispatch(gameActions.setGameType(GameType[selectedGame]));
+  };
+
+  const gameTypeSelectionChangedHandler = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSelectedGame(GameType[event.target.value as keyof typeof GameType]);
   };
 
   return (
@@ -35,9 +44,13 @@ const Main = () => {
           value={nickName}
         ></input>
         <label htmlFor="game-type-select">Game Type</label>
-        <select name="game-type" id="game-type-select">
-          <option value="quiz">Quiz</option>
-          <option value="find-country">Find the country</option>
+        <select
+          name="game-type"
+          id="game-type-select"
+          onChange={gameTypeSelectionChangedHandler}
+        >
+          <option value="Quiz">Quiz</option>
+          <option value="FindCountry">Find the country</option>
         </select>
         <input
           disabled={!nickNameIsValid}

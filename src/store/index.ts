@@ -1,10 +1,17 @@
 import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
 
-interface GameState {
-  nickname: string;
+export enum GameType {
+  None = "None",
+  Quiz = "Quiz",
+  FindCountry = "FindCountry",
 }
 
-const initialState: GameState = { nickname: "" };
+interface GameState {
+  nickname: string;
+  gameType: GameType;
+}
+
+const initialState: GameState = { nickname: "", gameType: GameType.None };
 
 const gameSlice = createSlice({
   name: "game",
@@ -12,6 +19,9 @@ const gameSlice = createSlice({
   reducers: {
     setNickname(state, action: PayloadAction<string>) {
       state.nickname = action.payload;
+    },
+    setGameType(state, action: PayloadAction<GameType>) {
+      state.gameType = action.payload;
     },
   },
 });
