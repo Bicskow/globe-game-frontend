@@ -1,0 +1,16 @@
+.gameContainer {
+  height: 600px;
+  width: 600px;
+  max-width: 500px;
+  min-width: 384px;
+  position: relative;
+  background-color: white;
+  border-radius: 30px;
+  margin: auto;
+  background-color: #48bfe3;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-rows: 15% 15% 15% 15% 30%;
+  align-items: bottom;
+  padding: 2rem;
+}
