@@ -61,7 +61,7 @@ export default class CountryGlobe {
       this.container.clientHeight
     );
 
-    this.renderer.domElement.style.position = "absolute";
+    this.renderer.domElement.style.position = "relative";
     this.renderer.domElement.style.top = "0";
     this.renderer.domElement.style.left = "0";
     this.renderer.domElement.style.bottom = "0";

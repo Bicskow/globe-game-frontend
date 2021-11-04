@@ -1,11 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import CountryGlobe from "../country-globe";
+import classes from "./Globe.module.css";
 
 const Globe = () => {
   const globeRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    console.log(globeRef);
     new CountryGlobe(globeRef.current as Element);
 
     globeRef.current?.addEventListener(
@@ -19,7 +19,7 @@ const Globe = () => {
     console.log(event.detail);
   };
 
-  return <div style={{ height: "500px" }} ref={globeRef}></div>;
+  return <div className={classes.globe} ref={globeRef}></div>;
 };
 
 export default Globe;

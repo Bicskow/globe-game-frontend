@@ -4,6 +4,7 @@ import { useAppDispatch } from "../hooks/redux-hooks";
 import { gameActions, GameType } from "../store";
 import React from "react";
 import { useState } from "react";
+import Card from "./Card";
 
 const StartGameForm = () => {
   const dispatch = useAppDispatch();
@@ -31,32 +32,34 @@ const StartGameForm = () => {
   };
 
   return (
-    <form className={classes["main-page--form"]}>
-      <label htmlFor="nickname">Nickname</label>
-      <input
-        id="nickname"
-        type="text"
-        className={nickNameInputClasses}
-        onChange={nickNameChangeHandler}
-        onBlur={nickNameBlurHandler}
-        value={nickName}
-      ></input>
-      <label htmlFor="game-type-select">Game Type</label>
-      <select
-        name="game-type"
-        id="game-type-select"
-        onChange={gameTypeSelectionChangedHandler}
-      >
-        <option value="Quiz">Quiz</option>
-        <option value="FindCountry">Find the country</option>
-      </select>
-      <input
-        disabled={!nickNameIsValid}
-        type="button"
-        value="Start Game"
-        onClick={startGameHandler}
-      ></input>
-    </form>
+    <Card>
+      <form className={classes["main-page--form"]}>
+        <label htmlFor="nickname">Nickname</label>
+        <input
+          id="nickname"
+          type="text"
+          className={nickNameInputClasses}
+          onChange={nickNameChangeHandler}
+          onBlur={nickNameBlurHandler}
+          value={nickName}
+        ></input>
+        <label htmlFor="game-type-select">Game Type</label>
+        <select
+          name="game-type"
+          id="game-type-select"
+          onChange={gameTypeSelectionChangedHandler}
+        >
+          <option value="Quiz">Quiz</option>
+          <option value="FindCountry">Find the country</option>
+        </select>
+        <input
+          disabled={!nickNameIsValid}
+          type="button"
+          value="Start Game"
+          onClick={startGameHandler}
+        ></input>
+      </form>
+    </Card>
   );
 };
 

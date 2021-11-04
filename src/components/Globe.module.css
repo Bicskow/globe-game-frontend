@@ -1,0 +1,6 @@
+.globe {
+  height: 100%;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+}
