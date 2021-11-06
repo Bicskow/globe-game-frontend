@@ -1,0 +1,57 @@
+.startGameForm {
+  height: 400px;
+  width: 66%;
+  max-width: 500px;
+  min-width: 384px;
+  position: relative;
+  display: grid;
+  grid-template-rows: 15% 15% 15% 15% 30%;
+  align-items: bottom;
+}
+
+.startGameForm input,
+.startGameForm select,
+.startGameForm label {
+  font: inherit;
+  height: 3rem;
+  font-size: 1.5rem;
+}
+
+.startGameForm input,
+.startGameForm select {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.startGameForm input.invalid {
+  border: 2px solid #b40e0e;
+  background-color: #fab7b7;
+}
+
+.startGameForm input[type="button"] {
+  font-weight: bold;
+  align-self: end;
+  border-radius: 0.5rem;
+  background-color: #80ffdb;
+  width: 15rem;
+  margin: 0 auto;
+  border: none;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.startGameForm input[type="button"]:hover:not([disabled]) {
+  background-color: #00cc92;
+}
+
+.startGameForm input[type="button"]:active:not([disabled]) {
+  background-color: #80ffdb;
+}
+
+.startGameForm label {
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: inline-block;
+  height: 2rem;
+  align-self: end;
+}

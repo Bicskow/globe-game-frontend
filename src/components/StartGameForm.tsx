@@ -1,4 +1,4 @@
-import classes from "./MainPage.module.css";
+import classes from "./StartGameForm.module.css";
 import useInput from "../hooks/use-input";
 import { useAppDispatch } from "../hooks/redux-hooks";
 import { gameActions, GameType } from "../store";
@@ -33,7 +33,7 @@ const StartGameForm = () => {
 
   return (
     <Card>
-      <form className={classes["main-page--form"]}>
+      <form className={classes.startGameForm}>
         <label htmlFor="nickname">Nickname</label>
         <input
           id="nickname"
