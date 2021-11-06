@@ -1,0 +1,6 @@
+.gameContainer {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
