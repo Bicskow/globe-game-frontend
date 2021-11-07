@@ -8,10 +8,8 @@ const Game = () => {
   //const game = useAppSelector((state) => state.game);
 
   return (
-    <Card>
-      <div className={classes.gameContainer}>
-        <Globe></Globe>
-      </div>
+    <Card className={classes.game}>
+      <Globe></Globe>
     </Card>
   );
 };

@@ -1,8 +1,10 @@
-.gameContainer {
-  height: 80vh;
-  width: 60vw;
-  max-width: 1000px;
-  min-width: 384px;
+.game {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  height: 100%;
+  width: 100%;
   position: relative;
   display: block;
 }

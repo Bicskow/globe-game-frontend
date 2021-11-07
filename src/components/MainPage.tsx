@@ -1,7 +1,6 @@
 import classes from "./MainPage.module.css";
 import { useAppSelector } from "../hooks/redux-hooks";
 import { GameType } from "../store";
-import Game from "./Game";
 import StartGameForm from "./StartGameForm";
 import GameContainer from "./GameContainer";
 
