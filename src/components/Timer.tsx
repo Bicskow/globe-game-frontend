@@ -1,10 +1,13 @@
 import Card from "./Card";
 import classes from "./Timer.module.css";
+import useTimer from "../hooks/use-timer";
 
 const Timer = () => {
+  const { timer } = useTimer();
+
   return (
     <Card className={classes.timer}>
-      <div>This will be the timer</div>
+      <div>{timer}</div>
     </Card>
   );
 };
