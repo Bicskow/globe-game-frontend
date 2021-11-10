@@ -219,6 +219,7 @@ export default class CountryGlobe {
         this.progressBar.animate(bar);
         if (bar >= 1) {
           this.progressElement.style.zIndex = "-1";
+          this.dispatchCountryGlobeLoaded();
         }
       } else {
         counter++;
@@ -384,6 +385,11 @@ export default class CountryGlobe {
 
   private dispatchCountrySelected(country: string) {
     let event = new CustomEvent("country_selected", { detail: country });
+    this.container.dispatchEvent(event);
+  }
+
+  private dispatchCountryGlobeLoaded() {
+    let event = new CustomEvent("country_globe_loaded");
     this.container.dispatchEvent(event);
   }
 

@@ -9,9 +9,14 @@ export enum GameType {
 interface GameState {
   nickname: string;
   gameType: GameType;
+  globeLoaded: boolean;
 }
 
-const initialState: GameState = { nickname: "", gameType: GameType.None };
+const initialState: GameState = {
+  nickname: "",
+  gameType: GameType.None,
+  globeLoaded: false,
+};
 
 const gameSlice = createSlice({
   name: "game",
@@ -22,6 +27,9 @@ const gameSlice = createSlice({
     },
     setGameType(state, action: PayloadAction<GameType>) {
       state.gameType = action.payload;
+    },
+    setGlobeLoaded(state, action: PayloadAction<boolean>) {
+      state.globeLoaded = action.payload;
     },
   },
 });

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const useTimer = () => {
   const pad = (n: number) => {
@@ -8,10 +8,10 @@ const useTimer = () => {
   const [startTime, setStartTime] = useState(new Date().getTime());
   const [timer, setTimer] = useState("00:00:00");
 
-  const startTimer = () => {
+  const startTimer = useCallback(() => {
     setTimerRunning(true);
     setStartTime(new Date().getTime());
-  };
+  }, []);
 
   const stopTimer = () => {
     setTimerRunning(false);
