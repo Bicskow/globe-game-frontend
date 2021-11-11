@@ -326,10 +326,16 @@ export default class CountryGlobe {
     while (typeof this.countryData === "undefined") {
       await this.sleep(100);
     }
-    resolve(Object.keys(this.countryData));
+    let countryList = [];
+    for (let country in this.countryData) {
+      if (this.countryData[country][this.resolution]) {
+        countryList.push(country);
+      }
+    }
+    resolve(countryList);
   }
 
-  public getCountryList() {
+  public getCountryList(): Promise<string[]> {
     return new Promise((resolve) => {
       this.waitForCountryDataLoad.bind(this)(resolve);
     });

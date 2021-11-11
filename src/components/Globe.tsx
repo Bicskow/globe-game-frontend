@@ -7,6 +7,7 @@ import { gameActions } from "../store";
 const Globe = () => {
   const dispatch = useAppDispatch();
   const globeRef = useRef<HTMLDivElement | null>(null);
+  let globe: CountryGlobe;
 
   const countrySelected = (event: CustomEvent) => {
     console.log("SELECTED");
@@ -21,7 +22,10 @@ const Globe = () => {
   );
 
   useEffect(() => {
-    new CountryGlobe(globeRef.current as Element);
+    globe = new CountryGlobe(globeRef.current as Element);
+    globe.getCountryList().then((result: string[]) => {
+      dispatch(gameActions.setCountryList(result));
+    });
 
     globeRef.current?.addEventListener(
       "country_selected",

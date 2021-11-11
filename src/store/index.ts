@@ -10,12 +10,14 @@ interface GameState {
   nickname: string;
   gameType: GameType;
   globeLoaded: boolean;
+  countryList: string[];
 }
 
 const initialState: GameState = {
   nickname: "",
   gameType: GameType.None,
   globeLoaded: false,
+  countryList: [],
 };
 
 const gameSlice = createSlice({
@@ -30,6 +32,9 @@ const gameSlice = createSlice({
     },
     setGlobeLoaded(state, action: PayloadAction<boolean>) {
       state.globeLoaded = action.payload;
+    },
+    setCountryList(state, action: PayloadAction<string[]>) {
+      state.countryList = action.payload;
     },
   },
 });
