@@ -7,7 +7,6 @@ import { gameActions } from "../store";
 const Globe = () => {
   const dispatch = useAppDispatch();
   const globeRef = useRef<HTMLDivElement | null>(null);
-  let globe: CountryGlobe;
 
   const countrySelected = (event: CustomEvent) => {
     console.log("SELECTED");
@@ -22,7 +21,7 @@ const Globe = () => {
   );
 
   useEffect(() => {
-    globe = new CountryGlobe(globeRef.current as Element);
+    const globe = new CountryGlobe(globeRef.current as Element);
     globe.getCountryList().then((result: string[]) => {
       dispatch(gameActions.setCountryList(result));
     });
@@ -36,7 +35,7 @@ const Globe = () => {
       "country_globe_loaded",
       countryGlobeLoaded as EventListener
     );
-  }, [countryGlobeLoaded]);
+  }, [countryGlobeLoaded, dispatch]);
 
   return <div className={classes.globe} ref={globeRef}></div>;
 };
