@@ -5,14 +5,14 @@ import { useAppSelector } from "../hooks/redux-hooks";
 import { useEffect } from "react";
 
 const Timer = () => {
-  const { globeLoaded } = useAppSelector((state) => state.game);
+  const { gameStarted } = useAppSelector((state) => state.game);
   const { timer, startTimer } = useTimer();
 
   useEffect(() => {
-    if (globeLoaded) {
+    if (gameStarted) {
       startTimer();
     }
-  }, [globeLoaded, startTimer]);
+  }, [gameStarted, startTimer]);
 
   return (
     <Card className={classes.timer}>

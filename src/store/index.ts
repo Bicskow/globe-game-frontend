@@ -10,6 +10,7 @@ interface GameState {
   nickname: string;
   gameType: GameType;
   globeLoaded: boolean;
+  gameStarted: boolean;
   countryList: string[];
 }
 
@@ -17,6 +18,7 @@ const initialState: GameState = {
   nickname: "",
   gameType: GameType.None,
   globeLoaded: false,
+  gameStarted: false,
   countryList: [],
 };
 
@@ -35,6 +37,9 @@ const gameSlice = createSlice({
     },
     setCountryList(state, action: PayloadAction<string[]>) {
       state.countryList = action.payload;
+    },
+    startGame(state) {
+      state.gameStarted = true;
     },
   },
 });
