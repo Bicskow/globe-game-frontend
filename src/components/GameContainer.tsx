@@ -17,7 +17,7 @@ const GameContainer = () => {
         dispatch(gameActions.startGame());
       }, 3000);
     }
-  }, [globeLoaded]);
+  }, [globeLoaded, dispatch]);
 
   return (
     <div className={classes.gameContainer}>
