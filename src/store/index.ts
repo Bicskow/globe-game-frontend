@@ -1,4 +1,7 @@
 import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
+import { Question, generateQuestions } from "../models/Question";
+
+const questionCount = 10;
 
 export enum GameType {
   None = "None",
@@ -12,6 +15,8 @@ interface GameState {
   globeLoaded: boolean;
   gameStarted: boolean;
   countryList: string[];
+  currentQuestion: number;
+  questions: Question[];
 }
 
 const initialState: GameState = {
@@ -20,6 +25,8 @@ const initialState: GameState = {
   globeLoaded: false,
   gameStarted: false,
   countryList: [],
+  currentQuestion: -1,
+  questions: [],
 };
 
 const gameSlice = createSlice({
@@ -39,7 +46,14 @@ const gameSlice = createSlice({
       state.countryList = action.payload;
     },
     startGame(state) {
-      state.gameStarted = true;
+      if (state.globeLoaded) {
+        state.questions = generateQuestions(
+          questionCount,
+          state.countryList,
+          state.gameType
+        );
+        state.gameStarted = true;
+      }
     },
   },
 });
