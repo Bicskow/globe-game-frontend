@@ -52,6 +52,7 @@ const gameSlice = createSlice({
           state.countryList,
           state.gameType
         );
+        state.currentQuestion = 0;
         state.gameStarted = true;
       }
     },
