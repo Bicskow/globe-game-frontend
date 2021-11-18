@@ -14,9 +14,14 @@ const QuizGameControl = () => {
     <Card className={classes.quizGameControl}>
       <Fragment>
         {gameStarted &&
-          (questions[currentQuestion] as QuizQuestion).choces.map((choice) => (
-            <QuizGameControlButton name={choice}></QuizGameControlButton>
-          ))}
+          (questions[currentQuestion] as QuizQuestion).choces.map(
+            (choice, index) => (
+              <QuizGameControlButton
+                key={index}
+                name={choice}
+              ></QuizGameControlButton>
+            )
+          )}
       </Fragment>
     </Card>
   );

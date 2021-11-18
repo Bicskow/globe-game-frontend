@@ -1,10 +1,10 @@
 import { GameType } from "../store/index";
 
 export class Question {
-  answerIsCorrect: boolean | undefined;
+  answerIsCorrect: boolean | null;
 
   constructor() {
-    this.answerIsCorrect = undefined;
+    this.answerIsCorrect = null;
   }
 }
 
