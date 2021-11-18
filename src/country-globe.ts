@@ -23,7 +23,7 @@ export default class CountryGlobe {
   private controls: OrbitControls;
   private highlightedCountry: string = "";
 
-  private resolution = "10m";
+  private resolution = "110m";
   private countryObjects = [] as THREE.Object3D[];
   private countryData: any;
 
