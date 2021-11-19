@@ -29,6 +29,14 @@ const initialState: GameState = {
   questions: [],
 };
 
+const resetGameState = (state: GameState) => {
+  state.nickname = "";
+  state.gameType = GameType.None;
+  state.gameStarted = false;
+  state.currentQuestion = -1;
+  state.questions = [];
+};
+
 const gameSlice = createSlice({
   name: "game",
   initialState,
@@ -55,6 +63,17 @@ const gameSlice = createSlice({
         state.currentQuestion = 0;
         state.gameStarted = true;
       }
+    },
+    stepToNextQuestion(state) {
+      if (state.globeLoaded && state.gameStarted) {
+        state.currentQuestion++;
+        if (state.currentQuestion >= state.questions.length) {
+          resetGameState(state);
+        }
+      }
+    },
+    endGame(state) {
+      resetGameState(state);
     },
   },
 });
