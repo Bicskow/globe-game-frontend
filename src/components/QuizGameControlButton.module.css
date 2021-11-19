@@ -19,3 +19,11 @@
 .quizButton:active {
   background-color: #80ffdb;
 }
+
+.correct {
+  background-color: green !important;
+}
+
+.wrong {
+  background-color: red !important;
+}
