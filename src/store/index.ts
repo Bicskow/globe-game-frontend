@@ -64,8 +64,9 @@ const gameSlice = createSlice({
         state.gameStarted = true;
       }
     },
-    stepToNextQuestion(state) {
+    stepToNextQuestion(state, action) {
       if (state.globeLoaded && state.gameStarted) {
+        state.questions[state.currentQuestion].answerIsCorrect = action.payload;
         state.currentQuestion++;
         if (state.currentQuestion >= state.questions.length) {
           resetGameState(state);

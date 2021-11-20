@@ -15,14 +15,17 @@ const QuizGameControlButton: React.FC<{
 
   const handleButtonClicked = () => {
     if (gameStarted) {
+      let answerOk: boolean;
       if (props.name === questions[currentQuestion].correctAnswer) {
         setHighlightClass(classes.correct);
+        answerOk = true;
       } else {
         setHighlightClass(classes.wrong);
+        answerOk = false;
       }
       setTimeout(() => {
         setHighlightClass("");
-        dispatch(gameActions.stepToNextQuestion());
+        dispatch(gameActions.stepToNextQuestion(answerOk));
       }, 1000);
     }
   };
