@@ -7,11 +7,11 @@ import { gameActions } from "../store";
 const QuizGameControlButton: React.FC<{
   name: string;
 }> = (props) => {
+  const [highlightClass, setHighlightClass] = useState("");
   const { questions, currentQuestion, gameStarted } = useAppSelector(
     (state) => state.game
   );
   const dispatch = useAppDispatch();
-  const [highlightClass, setHighlightClass] = useState("");
 
   const handleButtonClicked = () => {
     if (gameStarted) {
@@ -20,7 +20,10 @@ const QuizGameControlButton: React.FC<{
       } else {
         setHighlightClass(classes.wrong);
       }
-      dispatch(gameActions.stepToNextQuestion());
+      setTimeout(() => {
+        setHighlightClass("");
+        dispatch(gameActions.stepToNextQuestion());
+      }, 1000);
     }
   };
   return (
