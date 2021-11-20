@@ -2,13 +2,13 @@ import React, { useRef, useEffect, useCallback } from "react";
 import CountryGlobe from "../country-globe";
 import classes from "./Globe.module.css";
 import { useAppDispatch } from "../hooks/redux-hooks";
-import { gameActions, GameType } from "../store";
+import { gameActions, GameStep, GameType } from "../store";
 import { useAppSelector } from "../hooks/redux-hooks";
 
 let globe: CountryGlobe;
 
 const Globe = () => {
-  const { gameType, gameStarted, currentQuestion, questions } = useAppSelector(
+  const { gameType, gameStep, currentQuestion, questions } = useAppSelector(
     (state) => state.game
   );
   const dispatch = useAppDispatch();
@@ -27,12 +27,16 @@ const Globe = () => {
   );
 
   useEffect(() => {
-    if (gameType === GameType.Quiz && gameStarted && currentQuestion >= 0) {
+    if (
+      gameType === GameType.Quiz &&
+      gameStep === GameStep.InGame &&
+      currentQuestion >= 0
+    ) {
       let answer = questions[currentQuestion].correctAnswer;
       globe.zoomToCountry(answer);
       globe.highlightCounty(answer);
     }
-  }, [gameStarted, currentQuestion, questions, gameType]);
+  }, [gameStep, currentQuestion, questions, gameType]);
 
   useEffect(() => {
     globe = new CountryGlobe(globeRef.current as Element);

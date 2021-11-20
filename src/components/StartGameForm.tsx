@@ -23,6 +23,7 @@ const StartGameForm = () => {
   const startGameHandler = (event: React.MouseEvent<HTMLInputElement>) => {
     dispatch(gameActions.setNickname(nickName));
     dispatch(gameActions.setGameType(GameType[selectedGame]));
+    dispatch(gameActions.loadGame());
   };
 
   const gameTypeSelectionChangedHandler = (

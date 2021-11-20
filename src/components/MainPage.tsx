@@ -1,15 +1,19 @@
 import classes from "./MainPage.module.css";
 import { useAppSelector } from "../hooks/redux-hooks";
-import { GameType } from "../store";
+import { GameStep } from "../store";
 import StartGameForm from "./StartGameForm";
 import GameContainer from "./GameContainer";
+import GameResults from "./GameResults";
 
 const Main = () => {
-  const { gameType } = useAppSelector((state) => state.game);
+  const { gameStep } = useAppSelector((state) => state.game);
   return (
     <main className={classes["main-page"]}>
-      {gameType === GameType.None && <StartGameForm></StartGameForm>}
-      {gameType !== GameType.None && <GameContainer></GameContainer>}
+      {gameStep === GameStep.Init && <StartGameForm></StartGameForm>}
+      {(gameStep === GameStep.LoadingGame || gameStep === GameStep.InGame) && (
+        <GameContainer></GameContainer>
+      )}
+      {gameStep === GameStep.ViewResults && <GameResults></GameResults>}
     </main>
   );
 };

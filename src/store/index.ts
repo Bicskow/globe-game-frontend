@@ -9,11 +9,18 @@ export enum GameType {
   FindCountry = "FindCountry",
 }
 
+export enum GameStep {
+  Init = "Init",
+  LoadingGame = "LoadingGame",
+  InGame = "InGame",
+  ViewResults = "ViewResults",
+}
+
 interface GameState {
   nickname: string;
   gameType: GameType;
+  gameStep: GameStep;
   globeLoaded: boolean;
-  gameStarted: boolean;
   countryList: string[];
   currentQuestion: number;
   questions: QuestionIterface[];
@@ -22,8 +29,8 @@ interface GameState {
 const initialState: GameState = {
   nickname: "",
   gameType: GameType.None,
+  gameStep: GameStep.Init,
   globeLoaded: false,
-  gameStarted: false,
   countryList: [],
   currentQuestion: -1,
   questions: [],
@@ -32,7 +39,7 @@ const initialState: GameState = {
 const resetGameState = (state: GameState) => {
   state.nickname = "";
   state.gameType = GameType.None;
-  state.gameStarted = false;
+  state.gameStep = GameStep.Init;
   state.currentQuestion = -1;
   state.questions = [];
 };
@@ -53,6 +60,9 @@ const gameSlice = createSlice({
     setCountryList(state, action: PayloadAction<string[]>) {
       state.countryList = action.payload;
     },
+    loadGame(state) {
+      state.gameStep = GameStep.LoadingGame;
+    },
     startGame(state) {
       if (state.globeLoaded) {
         state.questions = generateQuestions(
@@ -61,15 +71,15 @@ const gameSlice = createSlice({
           state.gameType
         );
         state.currentQuestion = 0;
-        state.gameStarted = true;
+        state.gameStep = GameStep.InGame;
       }
     },
     stepToNextQuestion(state, action) {
-      if (state.globeLoaded && state.gameStarted) {
+      if (state.globeLoaded && state.gameStep === GameStep.InGame) {
         state.questions[state.currentQuestion].answerIsCorrect = action.payload;
         state.currentQuestion++;
         if (state.currentQuestion >= state.questions.length) {
-          resetGameState(state);
+          state.gameStep = GameStep.ViewResults;
         }
       }
     },

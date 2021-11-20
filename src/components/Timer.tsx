@@ -3,16 +3,17 @@ import classes from "./Timer.module.css";
 import useTimer from "../hooks/use-timer";
 import { useAppSelector } from "../hooks/redux-hooks";
 import { useEffect } from "react";
+import { GameStep } from "../store";
 
 const Timer = () => {
-  const { gameStarted } = useAppSelector((state) => state.game);
+  const { gameStep } = useAppSelector((state) => state.game);
   const { timer, startTimer } = useTimer();
 
   useEffect(() => {
-    if (gameStarted) {
+    if (gameStep === GameStep.InGame) {
       startTimer();
     }
-  }, [gameStarted, startTimer]);
+  }, [gameStep, startTimer]);
 
   return (
     <Card className={classes.timer}>
