@@ -22,7 +22,9 @@ export const generateQuestions = (
       question = {
         answerIsCorrect: null,
         correctAnswer: shuffled[sIndex],
-        choices: shuffled.slice(sIndex, sIndex + choiceCount),
+        choices: shuffled
+          .slice(sIndex, sIndex + choiceCount)
+          .sort(() => 0.5 - Math.random()),
       };
       sIndex += choiceCount;
     } else {
