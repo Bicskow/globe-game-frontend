@@ -1,7 +1,6 @@
 import classes from "./QuizGameControlButton.module.css";
 import { useState } from "react";
 import { useAppSelector } from "../hooks/redux-hooks";
-import { QuizQuestion } from "../models/Question";
 import { useAppDispatch } from "../hooks/redux-hooks";
 import { gameActions } from "../store";
 
@@ -16,10 +15,7 @@ const QuizGameControlButton: React.FC<{
 
   const handleButtonClicked = () => {
     if (gameStarted) {
-      if (
-        props.name ===
-        (questions[currentQuestion] as QuizQuestion).correctAnswer
-      ) {
+      if (props.name === questions[currentQuestion].correctAnswer) {
         setHighlightClass(classes.correct);
       } else {
         setHighlightClass(classes.wrong);

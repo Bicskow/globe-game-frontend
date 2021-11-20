@@ -1,5 +1,5 @@
 import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
-import { Question, generateQuestions } from "../models/Question";
+import { QuestionIterface, generateQuestions } from "../models/Question";
 
 const questionCount = 10;
 
@@ -16,7 +16,7 @@ interface GameState {
   gameStarted: boolean;
   countryList: string[];
   currentQuestion: number;
-  questions: Question[];
+  questions: QuestionIterface[];
 }
 
 const initialState: GameState = {

@@ -1,32 +1,12 @@
 import { GameType } from "../store/index";
 
-export class Question {
+export interface QuestionIterface {
   answerIsCorrect: boolean | null;
-
-  constructor() {
-    this.answerIsCorrect = null;
-  }
-}
-
-export class QuizQuestion extends Question {
-  static readonly choiceCount = 4;
   correctAnswer: string;
-  choces: string[];
-
-  constructor(correctAnswer: string, choces: string[]) {
-    super();
-    this.correctAnswer = correctAnswer;
-    this.choces = choces;
-  }
+  choices: string[];
 }
 
-export class FindCountryQuestion extends Question {
-  correctAnswer: string;
-  constructor(correctAnswer: string) {
-    super();
-    this.correctAnswer = correctAnswer;
-  }
-}
+const choiceCount = 4;
 
 export const generateQuestions = (
   questionCount: number,
@@ -39,13 +19,18 @@ export const generateQuestions = (
   for (let i = 0; i < questionCount; i++) {
     let question;
     if (questionType === GameType.Quiz) {
-      question = new QuizQuestion(
-        shuffled[sIndex],
-        shuffled.slice(sIndex, sIndex + QuizQuestion.choiceCount)
-      );
-      sIndex += QuizQuestion.choiceCount;
+      question = {
+        answerIsCorrect: null,
+        correctAnswer: shuffled[sIndex],
+        choices: shuffled.slice(sIndex, sIndex + choiceCount),
+      };
+      sIndex += choiceCount;
     } else {
-      question = new FindCountryQuestion(shuffled[sIndex]);
+      question = {
+        answerIsCorrect: null,
+        correctAnswer: shuffled[sIndex],
+        choices: [],
+      };
       sIndex++;
     }
     toReturn.push(question);

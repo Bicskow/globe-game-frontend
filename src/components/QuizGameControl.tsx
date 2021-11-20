@@ -2,7 +2,6 @@ import Card from "./Card";
 import classes from "./QuizGameControl.module.css";
 import QuizGameControlButton from "./QuizGameControlButton";
 import { useAppSelector } from "../hooks/redux-hooks";
-import { QuizQuestion } from "../models/Question";
 import { Fragment } from "react";
 
 const QuizGameControl = () => {
@@ -14,14 +13,12 @@ const QuizGameControl = () => {
     <Card className={classes.quizGameControl}>
       <Fragment>
         {gameStarted &&
-          (questions[currentQuestion] as QuizQuestion).choces.map(
-            (choice, index) => (
-              <QuizGameControlButton
-                key={index}
-                name={choice}
-              ></QuizGameControlButton>
-            )
-          )}
+          questions[currentQuestion].choices.map((choice, index) => (
+            <QuizGameControlButton
+              key={index}
+              name={choice}
+            ></QuizGameControlButton>
+          ))}
       </Fragment>
     </Card>
   );

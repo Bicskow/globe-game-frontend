@@ -4,7 +4,6 @@ import classes from "./Globe.module.css";
 import { useAppDispatch } from "../hooks/redux-hooks";
 import { gameActions, GameType } from "../store";
 import { useAppSelector } from "../hooks/redux-hooks";
-import { QuizQuestion } from "../models/Question";
 
 let globe: CountryGlobe;
 
@@ -29,7 +28,7 @@ const Globe = () => {
 
   useEffect(() => {
     if (gameType === GameType.Quiz && gameStarted && currentQuestion >= 0) {
-      let answer = (questions[currentQuestion] as QuizQuestion).correctAnswer;
+      let answer = questions[currentQuestion].correctAnswer;
       globe.zoomToCountry(answer);
       globe.highlightCounty(answer);
     }
