@@ -1,4 +1,22 @@
 .results {
-  width: 800px;
-  height: 600px;
+  display: grid;
+  grid-template-columns: auto auto 4rem;
+  min-width: 40%;
+  width: auto;
+  min-height: 70%;
+  height: auto;
+  padding: 3rem;
+}
+
+.headerRow {
+  font-weight: bold;
+  height: 0.1rem;
+}
+
+.headerDivider {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  border-bottom: 2px solid black;
+  height: 2px;
+  margin: 0;
 }
