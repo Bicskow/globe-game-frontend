@@ -36,14 +36,6 @@ const initialState: GameState = {
   questions: [],
 };
 
-const resetGameState = (state: GameState) => {
-  state.nickname = "";
-  state.gameType = GameType.None;
-  state.gameStep = GameStep.Init;
-  state.currentQuestion = -1;
-  state.questions = [];
-};
-
 const gameSlice = createSlice({
   name: "game",
   initialState,
@@ -84,7 +76,12 @@ const gameSlice = createSlice({
       }
     },
     endGame(state) {
-      resetGameState(state);
+      state.gameType = GameType.None;
+      state.gameStep = GameStep.Init;
+      state.currentQuestion = -1;
+      state.questions = [];
+      state.currentQuestion = -1;
+      state.questions = [];
     },
   },
 });

@@ -20,3 +20,40 @@
   height: 2px;
   margin: 0;
 }
+
+.checkMark {
+  fill: green;
+  width: 1rem;
+  height: 1rem;
+  justify-self: center;
+}
+
+.xMark {
+  fill: red;
+  width: 1rem;
+  height: 1rem;
+  justify-self: center;
+}
+
+.okButton {
+  font: inherit;
+  height: 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  background-color: #80ffdb;
+  width: 15rem;
+  margin: 0 auto;
+  border: none;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.okButton:hover {
+  background-color: #00cc92;
+}
+
+.okButton:active {
+  background-color: #80ffdb;
+}
