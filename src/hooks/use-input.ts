@@ -11,6 +11,10 @@ const useInput = (validateInput: (nickname: string) => boolean) => {
     setInputValue(event.currentTarget.value);
   };
 
+  const prefillInput = (value: string) => {
+    setInputValue(value);
+  };
+
   const inputBlurHandler = () => {
     setInputTouced(true);
   };
@@ -21,6 +25,7 @@ const useInput = (validateInput: (nickname: string) => boolean) => {
     inputHasError,
     inputChangeHandler,
     inputBlurHandler,
+    prefillInput,
   };
 };
 

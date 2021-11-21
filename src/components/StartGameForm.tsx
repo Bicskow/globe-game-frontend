@@ -1,14 +1,16 @@
 import classes from "./StartGameForm.module.css";
 import useInput from "../hooks/use-input";
 import { useAppDispatch } from "../hooks/redux-hooks";
+import { useAppSelector } from "../hooks/redux-hooks";
 import { gameActions, GameType } from "../store";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Card from "./Card";
 
 const StartGameForm = () => {
   const dispatch = useAppDispatch();
   const [selectedGame, setSelectedGame] = useState(GameType[GameType.Quiz]);
+  const { nickname: storedNickname } = useAppSelector((state) => state.game);
 
   const {
     inputValue: nickName,
@@ -16,7 +18,15 @@ const StartGameForm = () => {
     inputHasError: nickNameHasError,
     inputChangeHandler: nickNameChangeHandler,
     inputBlurHandler: nickNameBlurHandler,
+    prefillInput: prefillNickname,
   } = useInput((nickName: string) => nickName !== "");
+
+  useEffect(() => {
+    if (storedNickname !== "") {
+      prefillNickname(storedNickname);
+      dispatch(gameActions.setNickname(""));
+    }
+  }, [storedNickname, prefillNickname, dispatch]);
 
   const nickNameInputClasses = nickNameHasError ? classes["invalid"] : "";
 
