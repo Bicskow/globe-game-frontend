@@ -4,6 +4,7 @@ import { useAppSelector } from "../hooks/redux-hooks";
 import { useAppDispatch } from "../hooks/redux-hooks";
 import { gameActions } from "../store";
 import { Fragment } from "react";
+import { QuestionIterface } from "../models/Question";
 
 const GameResults = () => {
   const { questions } = useAppSelector((state) => state.game);
@@ -13,6 +14,18 @@ const GameResults = () => {
     dispatch(gameActions.endGame());
   };
 
+  const pad = (n: number) => {
+    return ("0" + n).slice(-2);
+  };
+
+  const getAnswerTime = (question: QuestionIterface) => {
+    let timeDiff = new Date(question.answeredAt);
+
+    return `${pad(timeDiff.getMinutes())}:${pad(
+      timeDiff.getUTCSeconds()
+    )}:${pad(Math.floor(timeDiff.getMilliseconds() / 16.66667))}`;
+  };
+
   return (
     <Card className={classes.results}>
       <Fragment>
@@ -20,11 +33,11 @@ const GameResults = () => {
         <div className={classes.headerRow}>Time</div>
         <div className={classes.headerRow}>Answer</div>
         <div className={classes.headerDivider}></div>
-        {questions.map((question) => {
+        {questions.map((question, index) => {
           return (
-            <Fragment>
+            <Fragment key={index}>
               <div>{question.correctAnswer}</div>
-              <div>00:00:00</div>
+              <div>{getAnswerTime(question)}</div>
               {question.answerIsCorrect ? (
                 <svg
                   className={classes.checkMark}

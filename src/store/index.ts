@@ -24,6 +24,7 @@ interface GameState {
   countryList: string[];
   currentQuestion: number;
   questions: QuestionIterface[];
+  startTime: number;
 }
 
 const initialState: GameState = {
@@ -34,6 +35,7 @@ const initialState: GameState = {
   countryList: [],
   currentQuestion: -1,
   questions: [],
+  startTime: -1,
 };
 
 const gameSlice = createSlice({
@@ -64,10 +66,13 @@ const gameSlice = createSlice({
         );
         state.currentQuestion = 0;
         state.gameStep = GameStep.InGame;
+        state.startTime = new Date().getTime();
       }
     },
     stepToNextQuestion(state, action) {
       if (state.globeLoaded && state.gameStep === GameStep.InGame) {
+        state.questions[state.currentQuestion].answeredAt =
+          new Date().getTime();
         state.questions[state.currentQuestion].answerIsCorrect = action.payload;
         state.currentQuestion++;
         if (state.currentQuestion >= state.questions.length) {

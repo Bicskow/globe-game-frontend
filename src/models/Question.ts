@@ -3,6 +3,7 @@ import { GameType } from "../store/index";
 export interface QuestionIterface {
   answerIsCorrect: boolean | null;
   correctAnswer: string;
+  answeredAt: number;
   choices: string[];
 }
 
@@ -12,7 +13,7 @@ export const generateQuestions = (
   questionCount: number,
   countryList: string[],
   questionType: GameType
-) => {
+): QuestionIterface[] => {
   let toReturn = [];
   let shuffled = [...countryList].sort(() => 0.5 - Math.random());
   let sIndex = 0;
@@ -22,6 +23,7 @@ export const generateQuestions = (
       question = {
         answerIsCorrect: null,
         correctAnswer: shuffled[sIndex],
+        answeredAt: -1,
         choices: shuffled
           .slice(sIndex, sIndex + choiceCount)
           .sort(() => 0.5 - Math.random()),
@@ -31,6 +33,7 @@ export const generateQuestions = (
       question = {
         answerIsCorrect: null,
         correctAnswer: shuffled[sIndex],
+        answeredAt: -1,
         choices: [],
       };
       sIndex++;
