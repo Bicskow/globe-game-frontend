@@ -27,3 +27,6 @@
 .wrong {
   background-color: red !important;
 }
+.noHover {
+  pointer-events: none;
+}

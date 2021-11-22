@@ -6,6 +6,8 @@ import { gameActions, GameStep } from "../store";
 
 const QuizGameControlButton: React.FC<{
   name: string;
+  disabled: boolean;
+  onClick: () => void;
 }> = (props) => {
   const [highlightClass, setHighlightClass] = useState("");
   const { questions, currentQuestion, gameStep } = useAppSelector(
@@ -14,7 +16,8 @@ const QuizGameControlButton: React.FC<{
   const dispatch = useAppDispatch();
 
   const handleButtonClicked = () => {
-    if (gameStep === GameStep.InGame) {
+    if (!props.disabled && gameStep === GameStep.InGame) {
+      props.onClick();
       let answerOk: boolean;
       if (props.name === questions[currentQuestion].correctAnswer) {
         setHighlightClass(classes.correct);
@@ -31,7 +34,9 @@ const QuizGameControlButton: React.FC<{
   };
   return (
     <button
-      className={`${classes.quizButton} ${highlightClass}`}
+      className={`${classes.quizButton} ${highlightClass} ${
+        props.disabled && classes.noHover
+      }`}
       onClick={handleButtonClicked}
     >
       {props.name}
