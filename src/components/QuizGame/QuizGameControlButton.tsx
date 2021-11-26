@@ -1,8 +1,8 @@
 import classes from "./QuizGameControlButton.module.css";
 import { useState } from "react";
-import { useAppSelector } from "../hooks/redux-hooks";
-import { useAppDispatch } from "../hooks/redux-hooks";
-import { gameActions, GameStep } from "../store";
+import { useAppSelector } from "../../hooks/redux-hooks";
+import { useAppDispatch } from "../../hooks/redux-hooks";
+import { gameActions, GameStep } from "../../store";
 
 const QuizGameControlButton: React.FC<{
   name: string;

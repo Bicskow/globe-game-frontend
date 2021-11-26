@@ -1,15 +1,16 @@
 import classes from "./GameContainer.module.css";
 import Game from "./Game";
 import Timer from "./Timer";
-import QuizGameControl from "./QuizGameControl";
+import QuizGameControl from "./QuizGame/QuizGameControl";
+import FindCountryGameControl from "./FindCountryGameControl";
 import { useEffect } from "react";
 import { useAppSelector } from "../hooks/redux-hooks";
 import { useAppDispatch } from "../hooks/redux-hooks";
-import { gameActions } from "../store";
+import { gameActions, GameType } from "../store";
 
 const GameContainer = () => {
   const dispatch = useAppDispatch();
-  const { globeLoaded } = useAppSelector((state) => state.game);
+  const { globeLoaded, gameType } = useAppSelector((state) => state.game);
 
   useEffect(() => {
     if (globeLoaded) {
@@ -22,7 +23,10 @@ const GameContainer = () => {
   return (
     <div className={classes.gameContainer}>
       <Timer></Timer>
-      <QuizGameControl></QuizGameControl>
+      {gameType === GameType.Quiz && <QuizGameControl></QuizGameControl>}
+      {gameType === GameType.FindCountry && (
+        <FindCountryGameControl></FindCountryGameControl>
+      )}
       <Game></Game>
     </div>
   );

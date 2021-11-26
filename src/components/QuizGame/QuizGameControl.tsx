@@ -1,10 +1,10 @@
-import Card from "./Card";
+import Card from "../Card";
 import { useEffect, useState } from "react";
 import classes from "./QuizGameControl.module.css";
 import QuizGameControlButton from "./QuizGameControlButton";
-import { useAppSelector } from "../hooks/redux-hooks";
+import { useAppSelector } from "../../hooks/redux-hooks";
 import { Fragment } from "react";
-import { GameStep } from "../store";
+import { GameStep } from "../../store";
 
 const QuizGameControl = () => {
   const { questions, currentQuestion, gameStep } = useAppSelector(
