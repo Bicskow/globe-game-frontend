@@ -2,7 +2,7 @@ import classes from "./GameContainer.module.css";
 import Game from "./Game";
 import Timer from "./Timer";
 import QuizGameControl from "./QuizGame/QuizGameControl";
-import FindCountryGameControl from "./FindCountryGameControl";
+import FindCountryGameControl from "./FindCountryGame/FindCountryGameControl";
 import { useEffect } from "react";
 import { useAppSelector } from "../hooks/redux-hooks";
 import { useAppDispatch } from "../hooks/redux-hooks";
