@@ -116,6 +116,11 @@ export default class CountryGlobe {
     this.render();
   }
 
+  public setContainer(ct: Element) {
+    this.container = ct;
+    ct.appendChild(this.renderer.domElement);
+  }
+
   private createProgressBar() {
     this.progressElement.id = "progress";
     this.progressElement.style.zIndex = "1";
