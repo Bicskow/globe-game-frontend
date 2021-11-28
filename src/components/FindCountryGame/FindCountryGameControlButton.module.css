@@ -1,0 +1,22 @@
+.findCountryButton {
+  z-index: 1;
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  font-family: inherit;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: #80ffdb;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.correct {
+  background-color: green !important;
+}
+
+.wrong {
+  background-color: red !important;
+}
