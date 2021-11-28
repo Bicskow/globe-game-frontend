@@ -15,8 +15,7 @@ const Globe = () => {
   const globeRef = useRef<HTMLDivElement | null>(null);
 
   const countrySelected = (event: CustomEvent) => {
-    console.log("SELECTED");
-    console.log(event.detail);
+    dispatch(gameActions.countrySelected(event.detail as string));
   };
 
   const countryGlobeLoaded = useCallback(
