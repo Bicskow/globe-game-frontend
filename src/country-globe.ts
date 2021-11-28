@@ -400,6 +400,7 @@ export default class CountryGlobe {
   public setDefaultCoords() {
     this.orbitCoords = new THREE.Spherical(75, Math.PI / 2, 0);
     this.camera.position.setFromSpherical(this.orbitCoords);
+    this.controls.reset();
   }
 
   private dispatchCountrySelected(country: string) {
