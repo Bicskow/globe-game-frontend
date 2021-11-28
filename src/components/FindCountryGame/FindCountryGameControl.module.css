@@ -4,16 +4,26 @@
   grid-row-start: 2;
   grid-row-end: 3;
   display: block;
-  overflow: hidden;
   min-width: 15rem;
   width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-.findCountryGameControl p {
-  font-weight: bold;
-  font-size: 1.5rem;
+.findCountryList {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
-.findCountryGameControl div {
-  text-align: center;
+.listCoverBottom {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  z-index: 50;
+  background: linear-gradient(to top, rgba(72, 191, 277, 0.8), transparent);
 }
