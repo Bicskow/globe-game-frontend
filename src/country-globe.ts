@@ -76,15 +76,7 @@ export default class CountryGlobe {
     );
 
     window.addEventListener("resize", () => {
-      this.renderer.setSize(
-        this.container.clientWidth,
-        this.container.clientHeight
-      );
-      this.camera.aspect =
-        this.container.clientWidth / this.container.clientHeight;
-      //this.renderer.setSize(window.innerWidth, window.innerHeight);
-      //this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.camera.updateProjectionMatrix();
+      this.fitToClientSize();
     });
 
     let globeGeometry = new THREE.SphereGeometry(this.radius - 0.01, 100, 100);
@@ -110,11 +102,22 @@ export default class CountryGlobe {
       this.onKeypres.bind(this) as any
     );
 
+    this.setDefaultCoords();
     this.createProgressBar();
 
     this.loadCountriesJson();
     this.render();
   }
+
+  public fitToClientSize = () => {
+    this.renderer.setSize(
+      this.container.clientWidth,
+      this.container.clientHeight
+    );
+    this.camera.aspect =
+      this.container.clientWidth / this.container.clientHeight;
+    this.camera.updateProjectionMatrix();
+  };
 
   public setContainer(ct: Element) {
     this.container = ct;
@@ -392,6 +395,11 @@ export default class CountryGlobe {
         }
       }
     }
+  }
+
+  public setDefaultCoords() {
+    this.orbitCoords = new THREE.Spherical(75, Math.PI / 2, 0);
+    this.camera.position.setFromSpherical(this.orbitCoords);
   }
 
   private dispatchCountrySelected(country: string) {

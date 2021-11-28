@@ -13,7 +13,6 @@ const FindCountryGameControl = () => {
   const getQuestionList = () => {
     let toReturn = [];
     for (let i = currentQuestion; i >= 0; i--) {
-      console.log(i);
       toReturn.push(questions[i]);
     }
     return toReturn;

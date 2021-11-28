@@ -14,9 +14,12 @@ const Globe = () => {
   const dispatch = useAppDispatch();
   const globeRef = useRef<HTMLDivElement | null>(null);
 
-  const countrySelected = (event: CustomEvent) => {
-    dispatch(gameActions.countrySelected(event.detail as string));
-  };
+  const countrySelected = useCallback(
+    (event: CustomEvent) => {
+      dispatch(gameActions.countrySelected(event.detail as string));
+    },
+    [dispatch]
+  );
 
   const countryGlobeLoaded = useCallback(
     (event: CustomEvent) => {
@@ -42,6 +45,9 @@ const Globe = () => {
       globe = new CountryGlobe(globeRef.current as Element);
     } else {
       globe.setContainer(globeRef.current as Element);
+      globe.fitToClientSize();
+      globe.removeCountryHighlight();
+      globe.setDefaultCoords();
     }
     globe.getCountryList().then((result: string[]) => {
       dispatch(gameActions.setCountryList(result));
@@ -56,7 +62,7 @@ const Globe = () => {
       "country_globe_loaded",
       countryGlobeLoaded as EventListener
     );
-  }, [countryGlobeLoaded, dispatch]);
+  }, [countryGlobeLoaded, countrySelected, dispatch]);
 
   return <div className={classes.globe} ref={globeRef}></div>;
 };
