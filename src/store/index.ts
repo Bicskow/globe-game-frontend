@@ -69,11 +69,25 @@ const gameSlice = createSlice({
         state.startTime = new Date().getTime();
       }
     },
-    stepToNextQuestion(state, action) {
+    stepToNextQuestion(state, action: PayloadAction<boolean>) {
       if (state.globeLoaded && state.gameStep === GameStep.InGame) {
         state.questions[state.currentQuestion].answeredAt =
           new Date().getTime();
         state.questions[state.currentQuestion].answerIsCorrect = action.payload;
+        state.currentQuestion++;
+        if (state.currentQuestion >= state.questions.length) {
+          state.gameStep = GameStep.ViewResults;
+        }
+      }
+    },
+    countrySelected(state, action: PayloadAction<string>) {
+      if (
+        state.gameType === GameType.FindCountry &&
+        state.gameStep === GameStep.InGame
+      ) {
+        state.questions[state.currentQuestion].answerIsCorrect =
+          state.questions[state.currentQuestion].correctAnswer ===
+          action.payload;
         state.currentQuestion++;
         if (state.currentQuestion >= state.questions.length) {
           state.gameStep = GameStep.ViewResults;
