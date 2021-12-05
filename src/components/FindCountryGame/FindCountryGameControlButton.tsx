@@ -1,9 +1,21 @@
 import classes from "./FindCountryGameControlButton.module.css";
+import { useImperativeHandle, useRef, forwardRef } from "react";
 
-const FindCountryGameControlButton: React.FC<{
+type ButtonProps = {
   name: string;
   answerOk: boolean | null;
-}> = (props) => {
+};
+
+const FindCountryGameControlButton = forwardRef<
+  number | undefined,
+  ButtonProps
+>((props, ref) => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useImperativeHandle<number | undefined, number | undefined>(ref, () => {
+    return buttonRef.current?.clientHeight;
+  });
+
   let highlightClass = "";
   if (props.answerOk === true) {
     highlightClass = classes.correct;
@@ -13,10 +25,13 @@ const FindCountryGameControlButton: React.FC<{
   }
 
   return (
-    <button className={`${classes.findCountryButton} ${highlightClass}`}>
+    <button
+      ref={buttonRef}
+      className={`${classes.findCountryButton} ${highlightClass}`}
+    >
       {props.name}
     </button>
   );
-};
+});
 
 export default FindCountryGameControlButton;
