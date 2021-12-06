@@ -4,6 +4,7 @@ import { GameStep } from "../store";
 import StartGameForm from "./StartGameForm";
 import GameContainer from "./GameContainer";
 import GameResults from "./GameResults";
+import GameStartCounter from "./UI/GameStartCounter";
 
 const Main = () => {
   const { gameStep } = useAppSelector((state) => state.game);
@@ -14,6 +15,9 @@ const Main = () => {
         <GameContainer></GameContainer>
       )}
       {gameStep === GameStep.ViewResults && <GameResults></GameResults>}
+      {gameStep === GameStep.LoadingGame && (
+        <GameStartCounter></GameStartCounter>
+      )}
     </main>
   );
 };
