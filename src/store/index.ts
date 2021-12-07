@@ -12,6 +12,7 @@ export enum GameType {
 export enum GameStep {
   Init = "Init",
   LoadingGame = "LoadingGame",
+  Countdown = "Countdown",
   InGame = "InGame",
   ViewResults = "ViewResults",
 }
@@ -57,16 +58,21 @@ const gameSlice = createSlice({
     loadGame(state) {
       state.gameStep = GameStep.LoadingGame;
     },
-    startGame(state) {
+    startCountdown(state) {
       if (state.globeLoaded) {
         state.questions = generateQuestions(
           questionCount,
           state.countryList,
           state.gameType
         );
-        state.currentQuestion = 0;
+        state.gameStep = GameStep.Countdown;
+      }
+    },
+    startGame(state) {
+      if (state.gameStep === GameStep.Countdown) {
         state.gameStep = GameStep.InGame;
         state.startTime = new Date().getTime();
+        state.currentQuestion = 0;
       }
     },
     stepToNextQuestion(state, action: PayloadAction<boolean>) {

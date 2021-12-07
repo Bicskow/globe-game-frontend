@@ -14,9 +14,7 @@ const GameContainer = () => {
 
   useEffect(() => {
     if (globeLoaded) {
-      setTimeout(() => {
-        dispatch(gameActions.startGame());
-      }, 3000);
+      dispatch(gameActions.startCountdown());
     }
   }, [globeLoaded, dispatch]);
 

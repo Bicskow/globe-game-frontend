@@ -11,11 +11,12 @@ const Main = () => {
   return (
     <main className={classes["main-page"]}>
       {gameStep === GameStep.Init && <StartGameForm></StartGameForm>}
-      {(gameStep === GameStep.LoadingGame || gameStep === GameStep.InGame) && (
-        <GameContainer></GameContainer>
-      )}
+      {(gameStep === GameStep.LoadingGame ||
+        gameStep === GameStep.InGame ||
+        gameStep === GameStep.Countdown) && <GameContainer></GameContainer>}
       {gameStep === GameStep.ViewResults && <GameResults></GameResults>}
-      {gameStep === GameStep.LoadingGame && (
+      {(gameStep === GameStep.LoadingGame ||
+        gameStep === GameStep.Countdown) && (
         <GameStartCounter></GameStartCounter>
       )}
     </main>
