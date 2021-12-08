@@ -56,10 +56,6 @@ export default class CountryGlobe {
     });
 
     this.renderer.setClearColor("#050505");
-    this.renderer.setSize(
-      this.container.clientWidth,
-      this.container.clientHeight
-    );
 
     this.renderer.domElement.style.position = "relative";
     this.renderer.domElement.style.top = "0";
@@ -69,11 +65,6 @@ export default class CountryGlobe {
     this.renderer.domElement.style.textAlign = "center";
 
     this.container.appendChild(this.renderer.domElement);
-
-    this.renderer.setSize(
-      this.container.clientWidth,
-      this.container.clientHeight
-    );
 
     window.addEventListener("resize", () => {
       this.fitToClientSize();
@@ -95,6 +86,7 @@ export default class CountryGlobe {
       this.onMouseDown.bind(this) as any
     );
 
+    this.fitToClientSize();
     this.setDefaultCoords();
     this.createProgressBar();
 
