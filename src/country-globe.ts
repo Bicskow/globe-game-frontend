@@ -90,16 +90,9 @@ export default class CountryGlobe {
     this.camera.add(light);
     this.scene.add(this.camera);
 
-    //this.container.addEventListener('mousemove', this.onMouseMove.bind(this) as any);
     this.renderer.domElement.addEventListener(
       "mousedown",
       this.onMouseDown.bind(this) as any
-    );
-    //this.container.addEventListener('mouseup', this.onMouseUp.bind(this) as any);
-    //this.container.addEventListener('DOMMouseScroll', this.onMouseWheel.bind(this) as any);
-    this.container.addEventListener(
-      "keypress",
-      this.onKeypres.bind(this) as any
     );
 
     this.setDefaultCoords();
@@ -136,7 +129,6 @@ export default class CountryGlobe {
     this.progressElement.style.height = "10px";
     this.progressElement.style.width =
       (this.container.clientWidth - 50).toString() + "px";
-    //this.container.clientWidth.toString() + "px"
 
     this.container.appendChild(this.progressElement);
     this.progressBar = new ProgressBar.Line("#progress", {
@@ -308,16 +300,6 @@ export default class CountryGlobe {
 
   private onMouseWheel(event: WheelEvent) {}
 
-  private onKeypres(event: KeyboardEvent) {
-    let key = String.fromCharCode(event.keyCode);
-    console.log(key);
-    if (key === "n") {
-      this.testAnimation();
-    } else if (key === "z") {
-      console.log(this.orbitCoords.radius);
-    }
-  }
-
   private orbitUpdateDone() {
     this.orbitUpdate = false;
   }
@@ -429,27 +411,5 @@ export default class CountryGlobe {
       }
     }
     console.log(this.highlightedCountry);
-  }
-
-  private testAnimation() {
-    console.log("ANIMATION START");
-    let keys = Object.keys(this.countryData);
-    keys.sort();
-    let country = keys[0];
-    if (this.highlightedCountry === "") {
-      country = keys[0];
-    } else {
-      for (let i = 0; i < keys.length; i++) {
-        if (keys[i] === this.highlightedCountry) {
-          if (i + 1 < keys.length) {
-            country = keys[i + 1];
-          } else {
-            country = keys[0];
-          }
-        }
-      }
-    }
-    this.highlightCounty(country);
-    this.zoomToCountry(country);
   }
 }
