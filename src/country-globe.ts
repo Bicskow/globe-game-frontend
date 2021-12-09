@@ -303,12 +303,6 @@ export default class CountryGlobe {
     }
   }
 
-  private onMouseMove(evt: MouseEvent) {}
-
-  private onMouseUp(evt: MouseEvent) {}
-
-  private onMouseWheel(event: WheelEvent) {}
-
   private orbitUpdateDone() {
     this.orbitUpdate = false;
   }
