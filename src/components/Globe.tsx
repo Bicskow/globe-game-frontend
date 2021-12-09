@@ -8,9 +8,8 @@ import { useAppSelector } from "../hooks/redux-hooks";
 let globe: CountryGlobe | null = null;
 
 const Globe = () => {
-  const { gameType, gameStep, currentQuestion, questions } = useAppSelector(
-    (state) => state.game
-  );
+  const { gameType, gameStep, currentQuestion, questions, globeLoaded } =
+    useAppSelector((state) => state.game);
   const dispatch = useAppDispatch();
   const globeRef = useRef<HTMLDivElement | null>(null);
 
@@ -46,7 +45,7 @@ const Globe = () => {
     } else {
       globe?.setHighlightOnClickEnabled(true);
     }
-  }, [gameType]);
+  }, [gameType, globeLoaded]);
 
   useEffect(() => {
     if (globe === null) {
