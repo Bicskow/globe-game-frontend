@@ -91,6 +91,8 @@ const gameSlice = createSlice({
         state.gameType === GameType.FindCountry &&
         state.gameStep === GameStep.InGame
       ) {
+        state.questions[state.currentQuestion].answeredAt =
+          new Date().getTime();
         state.questions[state.currentQuestion].answerIsCorrect =
           state.questions[state.currentQuestion].correctAnswer ===
           action.payload;

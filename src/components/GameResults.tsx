@@ -7,7 +7,7 @@ import { Fragment } from "react";
 import { QuestionIterface } from "../models/Question";
 
 const GameResults = () => {
-  const { questions } = useAppSelector((state) => state.game);
+  const { questions, startTime } = useAppSelector((state) => state.game);
   const dispatch = useAppDispatch();
 
   const handeButtonClick = () => {
@@ -19,7 +19,7 @@ const GameResults = () => {
   };
 
   const getAnswerTime = (question: QuestionIterface) => {
-    let timeDiff = new Date(question.answeredAt);
+    let timeDiff = new Date(question.answeredAt - startTime);
 
     return `${pad(timeDiff.getMinutes())}:${pad(
       timeDiff.getUTCSeconds()
