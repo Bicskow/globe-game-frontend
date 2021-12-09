@@ -58,21 +58,6 @@ export default class CountryGlobe {
     });
   }
 
-  public fitToClientSize = () => {
-    this.renderer.setSize(
-      this.container.clientWidth,
-      this.container.clientHeight
-    );
-    this.camera.aspect =
-      this.container.clientWidth / this.container.clientHeight;
-    this.camera.updateProjectionMatrix();
-  };
-
-  public setContainer(ct: Element) {
-    this.container = ct;
-    ct.appendChild(this.renderer.domElement);
-  }
-
   private setupOrbitControls() {
     this.controls.enableDamping = false;
     this.controls.rotateSpeed = 0.5;
@@ -328,6 +313,49 @@ export default class CountryGlobe {
     resolve(countryList);
   }
 
+  private dispatchCountrySelected(country: string) {
+    let event = new CustomEvent("country_selected", { detail: country });
+    this.container.dispatchEvent(event);
+  }
+
+  private dispatchCountryGlobeLoaded() {
+    let event = new CustomEvent("country_globe_loaded");
+    this.container.dispatchEvent(event);
+  }
+
+  public fitToClientSize = () => {
+    this.renderer.setSize(
+      this.container.clientWidth,
+      this.container.clientHeight
+    );
+    this.camera.aspect =
+      this.container.clientWidth / this.container.clientHeight;
+    this.camera.updateProjectionMatrix();
+  };
+
+  public setContainer(ct: Element) {
+    this.container = ct;
+    ct.appendChild(this.renderer.domElement);
+  }
+
+  public highlightCounty(country: string) {
+    if (this.highlightedCountry === country) {
+      this.removeCountryHighlight();
+      this.dispatchCountrySelected("");
+      return;
+    }
+    this.removeCountryHighlight();
+
+    for (let object of this.countryObjects) {
+      if (object.name === country) {
+        this.setObjectColor(object, 0xfcf0513);
+        this.highlightedCountry = country;
+        this.dispatchCountrySelected(this.highlightedCountry);
+      }
+    }
+    console.log(this.highlightedCountry);
+  }
+
   public getCountryList(): Promise<string[]> {
     return new Promise((resolve) => {
       this.waitForCountryDataLoad.bind(this)(resolve);
@@ -386,33 +414,5 @@ export default class CountryGlobe {
     this.orbitCoords = new THREE.Spherical(75, Math.PI / 2, 0);
     this.camera.position.setFromSpherical(this.orbitCoords);
     this.controls.reset();
-  }
-
-  private dispatchCountrySelected(country: string) {
-    let event = new CustomEvent("country_selected", { detail: country });
-    this.container.dispatchEvent(event);
-  }
-
-  private dispatchCountryGlobeLoaded() {
-    let event = new CustomEvent("country_globe_loaded");
-    this.container.dispatchEvent(event);
-  }
-
-  public highlightCounty(country: string) {
-    if (this.highlightedCountry === country) {
-      this.removeCountryHighlight();
-      this.dispatchCountrySelected("");
-      return;
-    }
-    this.removeCountryHighlight();
-
-    for (let object of this.countryObjects) {
-      if (object.name === country) {
-        this.setObjectColor(object, 0xfcf0513);
-        this.highlightedCountry = country;
-        this.dispatchCountrySelected(this.highlightedCountry);
-      }
-    }
-    console.log(this.highlightedCountry);
   }
 }
