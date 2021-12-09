@@ -3,6 +3,7 @@ import $ from "jquery";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import TWEEN from "@tweenjs/tween.js";
+import { PerspectiveCamera } from "three";
 let ProgressBar = require("progressbar.js");
 
 export default class CountryGlobe {
@@ -36,54 +37,25 @@ export default class CountryGlobe {
     this.basePath = basePath;
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(
-      10,
-      this.container.clientWidth / this.container.clientHeight,
-      0.1,
-      1000
-    );
-    this.camera.position.setFromSpherical(this.orbitCoords);
+    this.camera = new PerspectiveCamera();
 
+    this.setupCamera();
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.setupOrbitControls();
-
-    this.renderer.setClearColor("#050505");
-
-    this.renderer.domElement.style.position = "relative";
-    this.renderer.domElement.style.top = "0";
-    this.renderer.domElement.style.left = "0";
-    this.renderer.domElement.style.bottom = "0";
-    this.renderer.domElement.style.right = "0";
-    this.renderer.domElement.style.textAlign = "center";
+    this.setupRenderer();
+    this.setupGlobeGeometry();
+    this.setupLigth();
+    this.fitToClientSize();
+    this.setDefaultCoords();
+    this.createProgressBar();
+    this.loadCountriesJson();
+    this.render();
 
     this.container.appendChild(this.renderer.domElement);
 
     window.addEventListener("resize", () => {
       this.fitToClientSize();
     });
-
-    let globeGeometry = new THREE.SphereGeometry(this.radius - 0.01, 100, 100);
-
-    let globeMaterial = new THREE.MeshPhongMaterial({ color: 0x3471eb });
-    let globeMesh = new THREE.Mesh(globeGeometry, globeMaterial);
-    this.scene.add(globeMesh);
-
-    const light = new THREE.PointLight(0xffffff, 1, 0, 2);
-    light.position.set(1000, 5, 1500);
-    this.camera.add(light);
-    this.scene.add(this.camera);
-
-    this.renderer.domElement.addEventListener(
-      "mousedown",
-      this.onMouseDown.bind(this) as any
-    );
-
-    this.fitToClientSize();
-    this.setDefaultCoords();
-    this.createProgressBar();
-
-    this.loadCountriesJson();
-    this.render();
   }
 
   public fitToClientSize = () => {
@@ -111,6 +83,47 @@ export default class CountryGlobe {
       let zoom = this.controls.target.distanceTo(this.controls.object.position);
       this.controls.rotateSpeed = zoom / 150.0;
     });
+  }
+
+  private setupRenderer() {
+    this.renderer.setClearColor("#050505");
+
+    this.renderer.domElement.style.position = "relative";
+    this.renderer.domElement.style.top = "0";
+    this.renderer.domElement.style.left = "0";
+    this.renderer.domElement.style.bottom = "0";
+    this.renderer.domElement.style.right = "0";
+    this.renderer.domElement.style.textAlign = "center";
+
+    this.renderer.domElement.addEventListener(
+      "mousedown",
+      this.onMouseDown.bind(this) as any
+    );
+  }
+
+  private setupGlobeGeometry() {
+    let globeGeometry = new THREE.SphereGeometry(this.radius - 0.01, 100, 100);
+
+    let globeMaterial = new THREE.MeshPhongMaterial({ color: 0x3471eb });
+    let globeMesh = new THREE.Mesh(globeGeometry, globeMaterial);
+    this.scene.add(globeMesh);
+  }
+
+  private setupLigth() {
+    const light = new THREE.PointLight(0xffffff, 1, 0, 2);
+    light.position.set(1000, 5, 1500);
+    this.camera.add(light);
+  }
+
+  private setupCamera() {
+    this.camera = new THREE.PerspectiveCamera(
+      10,
+      this.container.clientWidth / this.container.clientHeight,
+      0.1,
+      1000
+    );
+    this.camera.position.setFromSpherical(this.orbitCoords);
+    this.scene.add(this.camera);
   }
 
   private createProgressBar() {
