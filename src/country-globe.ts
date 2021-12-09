@@ -45,15 +45,7 @@ export default class CountryGlobe {
     this.camera.position.setFromSpherical(this.orbitCoords);
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.enableDamping = false;
-    this.controls.rotateSpeed = 0.5;
-    this.controls.minDistance = 5.5;
-    this.controls.maxDistance = 75.0;
-
-    this.controls.addEventListener("change", () => {
-      let zoom = this.controls.target.distanceTo(this.controls.object.position);
-      this.controls.rotateSpeed = zoom / 150.0;
-    });
+    this.setupOrbitControls();
 
     this.renderer.setClearColor("#050505");
 
@@ -107,6 +99,18 @@ export default class CountryGlobe {
   public setContainer(ct: Element) {
     this.container = ct;
     ct.appendChild(this.renderer.domElement);
+  }
+
+  private setupOrbitControls() {
+    this.controls.enableDamping = false;
+    this.controls.rotateSpeed = 0.5;
+    this.controls.minDistance = 5.5;
+    this.controls.maxDistance = 75.0;
+
+    this.controls.addEventListener("change", () => {
+      let zoom = this.controls.target.distanceTo(this.controls.object.position);
+      this.controls.rotateSpeed = zoom / 150.0;
+    });
   }
 
   private createProgressBar() {
