@@ -23,6 +23,7 @@ export default class CountryGlobe {
   private mouseY: number = 0;
   private controls: OrbitControls;
   private highlightedCountry: string = "";
+  private highlightOnClickEnabled = true;
 
   private resolution = "110m";
   private countryObjects = [] as THREE.Object3D[];
@@ -282,9 +283,11 @@ export default class CountryGlobe {
     this.mouseX = evt.clientX - left;
     this.mouseY = evt.clientY - top;
 
-    let obj = this.getIntersections();
-    if (obj != null) {
-      this.highlightCounty(obj.name);
+    if (this.highlightOnClickEnabled) {
+      let obj = this.getIntersections();
+      if (obj != null) {
+        this.highlightCounty(obj.name);
+      }
     }
   }
 
@@ -336,6 +339,10 @@ export default class CountryGlobe {
   public setContainer(ct: Element) {
     this.container = ct;
     ct.appendChild(this.renderer.domElement);
+  }
+
+  public setHighlightOnClickEnabled(value: boolean) {
+    this.highlightOnClickEnabled = value;
   }
 
   public highlightCounty(country: string) {

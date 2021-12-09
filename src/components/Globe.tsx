@@ -41,6 +41,14 @@ const Globe = () => {
   }, [gameStep, currentQuestion, questions, gameType]);
 
   useEffect(() => {
+    if (gameType === GameType.Quiz) {
+      globe?.setHighlightOnClickEnabled(false);
+    } else {
+      globe?.setHighlightOnClickEnabled(true);
+    }
+  }, [gameType]);
+
+  useEffect(() => {
     if (globe === null) {
       globe = new CountryGlobe(globeRef.current as Element);
     } else {
