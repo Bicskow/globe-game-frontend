@@ -1,8 +1,8 @@
 .startGameForm {
-  height: 400px;
-  width: 66%;
-  max-width: 500px;
-  min-width: 384px;
+  height: 20rem;
+  width: 60vw;
+  max-width: 25rem;
+  min-width: 10rem;
   position: relative;
   display: grid;
   grid-template-rows: 15% 15% 15% 15% 30%;
@@ -14,7 +14,8 @@
 .startGameForm label {
   font: inherit;
   height: 3rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  width: 100%;
 }
 
 .startGameForm input,
@@ -29,29 +30,65 @@
   background-color: #fab7b7;
 }
 
-.startGameForm input[type="button"] {
+.startGameForm input[type="submit"] {
   font-weight: bold;
   align-self: end;
   border-radius: 0.5rem;
   background-color: #80ffdb;
-  width: 15rem;
+  max-width: 15rem;
   margin: 0 auto;
   border: none;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.startGameForm input[type="button"]:hover:not([disabled]) {
+.startGameForm input[type="submit"]:hover:not([disabled]) {
   background-color: #00cc92;
 }
 
-.startGameForm input[type="button"]:active:not([disabled]) {
+.startGameForm input[type="submit"]:active:not([disabled]) {
   background-color: #80ffdb;
 }
 
 .startGameForm label {
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1rem;
   display: inline-block;
-  height: 2rem;
+  height: 1.5rem;
   align-self: end;
+}
+
+@media (min-width: 40rem) {
+  .startGameForm {
+    grid-template-rows: 15% 15% 15% 15% 30%;
+    row-gap: 0.2rem;
+  }
+
+  .startGameForm input,
+  .startGameForm select,
+  .startGameForm label {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-height: 30rem) and (orientation: landscape) {
+  .startGameForm {
+    grid-template-rows: 3rem 3rem 4rem;
+    grid-template-columns: 40% 60%;
+    height: 11rem;
+    row-gap: 0.5rem;
+  }
+
+  .startGameForm input,
+  .startGameForm select,
+  .startGameForm label {
+    font-size: 1rem;
+  }
+
+  .startGameForm input[type="submit"] {
+    grid-column: span 2;
+  }
+
+  .startGameForm label {
+    align-self: center;
+  }
 }

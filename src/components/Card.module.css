@@ -1,10 +1,17 @@
 .card {
   display: block;
-  padding: 2rem;
+  padding: 1rem;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 30px;
+  border-radius: 15px;
   background-color: white;
   position: relative;
   margin: auto;
   background-color: #48bfe3;
+}
+
+@media (min-width: 40rem) {
+  .card {
+    border-radius: 30px;
+    padding: 2rem;
+  }
 }

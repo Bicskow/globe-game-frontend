@@ -65,7 +65,7 @@ const StartGameForm = () => {
         </select>
         <input
           disabled={!nickNameIsValid}
-          type="button"
+          type="submit"
           value="Start Game"
           onClick={startGameHandler}
         ></input>
