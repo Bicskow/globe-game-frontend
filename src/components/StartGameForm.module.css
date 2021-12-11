@@ -30,7 +30,7 @@
   background-color: #fab7b7;
 }
 
-.startGameForm input[type="submit"] {
+.startGameForm input[type="button"] {
   font-weight: bold;
   align-self: end;
   border-radius: 0.5rem;
@@ -41,11 +41,11 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.startGameForm input[type="submit"]:hover:not([disabled]) {
+.startGameForm input[type="button"]:hover:not([disabled]) {
   background-color: #00cc92;
 }
 
-.startGameForm input[type="submit"]:active:not([disabled]) {
+.startGameForm input[type="button"]:active:not([disabled]) {
   background-color: #80ffdb;
 }
 
@@ -84,7 +84,7 @@
     font-size: 1rem;
   }
 
-  .startGameForm input[type="submit"] {
+  .startGameForm input[type="button"] {
     grid-column: span 2;
   }
 

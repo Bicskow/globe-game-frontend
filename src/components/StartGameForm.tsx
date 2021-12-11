@@ -36,6 +36,10 @@ const StartGameForm = () => {
     dispatch(gameActions.loadGame());
   };
 
+  const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+
   const gameTypeSelectionChangedHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -44,7 +48,7 @@ const StartGameForm = () => {
 
   return (
     <Card>
-      <form className={classes.startGameForm}>
+      <form className={classes.startGameForm} onSubmit={formSubmitHandler}>
         <label htmlFor="nickname">Nickname</label>
         <input
           id="nickname"
@@ -65,7 +69,7 @@ const StartGameForm = () => {
         </select>
         <input
           disabled={!nickNameIsValid}
-          type="submit"
+          type="button"
           value="Start Game"
           onClick={startGameHandler}
         ></input>
