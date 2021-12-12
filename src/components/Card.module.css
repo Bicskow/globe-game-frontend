@@ -9,9 +9,16 @@
   background-color: #48bfe3;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 60rem) {
   .card {
     border-radius: 30px;
     padding: 2rem;
+  }
+}
+
+@media (max-height: 45rem) {
+  .card {
+    padding: 1rem;
+    border-radius: 15px;
   }
 }

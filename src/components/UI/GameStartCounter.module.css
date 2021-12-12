@@ -14,9 +14,17 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 20;
-  font-size: 50rem;
+  z-index: 30;
+  font-size: 20rem;
   font-weight: bold;
   text-align: center;
+  vertical-align: bottom;
+  line-height: 100vh;
   color: #5e60ceaa;
+}
+
+@media (min-width: 60rem) {
+  .counter {
+    font-size: 50rem;
+  }
 }

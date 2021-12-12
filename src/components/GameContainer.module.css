@@ -1,9 +1,25 @@
 .gameContainer {
   display: grid;
-  grid-template-columns: calc(30% - 3rem) auto;
-  grid-template-rows: calc(30% - 3rem) calc(70%);
-  grid-gap: 3rem;
-  padding: 3rem;
+  grid-template-columns: 100%;
+  grid-template-rows: 5rem minmax(5rem, 80vw) minmax(12rem, auto);
+  grid-gap: 1rem;
+  padding: 1rem;
   height: 100%;
   width: 100%;
+}
+
+@media (min-width: 60rem) {
+  .gameContainer {
+    grid-template-columns: calc(30% - 3rem) auto;
+    grid-template-rows: calc(30% - 3rem) calc(70%);
+    grid-gap: 3rem;
+    padding: 3rem;
+  }
+}
+
+@media (max-height: 45rem) {
+  .gameContainer {
+    grid-gap: 1rem;
+    padding: 1rem;
+  }
 }
