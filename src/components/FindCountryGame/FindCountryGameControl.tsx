@@ -12,6 +12,10 @@ const FindCountryGameControl = () => {
     (state) => state.game
   );
   const [shiftList, setShiftList] = useState(0);
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  });
 
   const getShift = useCallback(() => {
     let offset = 15;
@@ -35,12 +39,22 @@ const FindCountryGameControl = () => {
 
   useEffect(() => {
     setShiftList(getShift());
-  }, [currentQuestion, getShift]);
+  }, [currentQuestion, getShift, dimensions]);
 
-  const handleResize = () => {
-    setShiftList(getShift());
-  };
-  window.addEventListener("resize", handleResize);
+  useEffect(() => {
+    function handleResize2() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      });
+    }
+
+    window.addEventListener("resize", handleResize2);
+
+    return () => {
+      window.removeEventListener("resize", handleResize2);
+    };
+  }, []);
 
   return (
     <Card className={classes.findCountryGameControl}>
