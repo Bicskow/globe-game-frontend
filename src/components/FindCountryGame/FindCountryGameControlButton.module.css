@@ -2,13 +2,13 @@
   z-index: 1;
   display: block;
   width: 100%;
-  min-height: 3rem;
+  min-height: 1rem;
   font-family: inherit;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-radius: 0.5rem;
   border: none;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
   background-color: #80ffdb;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -19,4 +19,19 @@
 
 .wrong {
   background-color: red !important;
+}
+
+@media (min-width: 60rem) {
+  .findCountryButton {
+    min-height: 3rem;
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-height: 45rem) {
+  .findCountryButton {
+    font-size: 1.5rem;
+  }
 }

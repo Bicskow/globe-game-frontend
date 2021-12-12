@@ -3,7 +3,9 @@ import classes from "./FindCountryGameControl.module.css";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../../hooks/redux-hooks";
 import { GameStep } from "../../store";
-import FindCountryGameControlButton from "./FindCountryGameControlButton";
+import FindCountryGameControlButton, {
+  ButtonDomProps,
+} from "./FindCountryGameControlButton";
 
 const FindCountryGameControl = () => {
   const { questions, currentQuestion, gameStep } = useAppSelector(
@@ -12,20 +14,33 @@ const FindCountryGameControl = () => {
   const [shiftList, setShiftList] = useState(0);
 
   const getShift = useCallback(() => {
+    let offset = 15;
     let shiftCurrent = questions.length - currentQuestion - 1;
     let shift = 0;
     for (let i = 0; i < itemsRef.current.length && i < shiftCurrent; i++) {
-      shift += itemsRef.current[i] ?? 0;
-      shift += 16;
+      if (itemsRef.current[i]) {
+        shift += itemsRef.current[i].height ?? 0;
+        shift += itemsRef.current[i].margin;
+        if (itemsRef.current[i].margin === 16) {
+          offset = 6;
+        }
+      } else {
+        console.log("was zweo");
+      }
     }
-    return shift + 6;
+    return shift + offset;
   }, [currentQuestion, questions.length]);
 
-  const itemsRef = useRef<Array<number | undefined>>([]);
+  const itemsRef = useRef<Array<ButtonDomProps>>([]);
 
   useEffect(() => {
     setShiftList(getShift());
   }, [currentQuestion, getShift]);
+
+  const handleResize = () => {
+    setShiftList(getShift());
+  };
+  window.addEventListener("resize", handleResize);
 
   return (
     <Card className={classes.findCountryGameControl}>
@@ -43,9 +58,7 @@ const FindCountryGameControl = () => {
                 .reverse()
                 .map((question, index) => (
                   <FindCountryGameControlButton
-                    ref={(el: number | undefined) =>
-                      (itemsRef.current[index] = el)
-                    }
+                    ref={(el: ButtonDomProps) => (itemsRef.current[index] = el)}
                     answerOk={question.answerIsCorrect}
                     key={index}
                     name={question.correctAnswer}

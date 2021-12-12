@@ -1,13 +1,14 @@
 .findCountryGameControl {
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
   display: block;
   min-width: 15rem;
   width: 100%;
   height: 100%;
   position: relative;
+  max-height: 30vh;
 }
 
 .findCountryList {
@@ -31,4 +32,14 @@
 ul {
   padding: 0;
   transform: translateY(-8rem);
+}
+
+@media (min-width: 60rem) {
+  .findCountryGameControl {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    max-height: 100%;
+  }
 }

@@ -6,32 +6,51 @@ type ButtonProps = {
   answerOk: boolean | null;
 };
 
-const FindCountryGameControlButton = forwardRef<
-  number | undefined,
-  ButtonProps
->((props, ref) => {
-  const buttonRef = useRef<HTMLButtonElement>(null);
+export type ButtonDomProps = {
+  height: number | undefined;
+  margin: number;
+};
 
-  useImperativeHandle<number | undefined, number | undefined>(ref, () => {
-    return buttonRef.current?.clientHeight;
-  });
+const FindCountryGameControlButton = forwardRef<ButtonDomProps, ButtonProps>(
+  (props, ref) => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
-  let highlightClass = "";
-  if (props.answerOk === true) {
-    highlightClass = classes.correct;
+    useImperativeHandle<ButtonDomProps, ButtonDomProps>(ref, () => {
+      let margin = 0;
+      let height = 0;
+      if (buttonRef.current !== undefined) {
+        margin = parseFloat(
+          window
+            .getComputedStyle(buttonRef.current ?? new Element())
+            .marginTop.replace("px", "")
+        );
+      }
+      if (buttonRef.current?.clientHeight !== undefined) {
+        height = buttonRef.current?.clientHeight;
+      }
+      return {
+        height,
+        margin,
+      };
+    });
+
+    let highlightClass = "";
+    if (props.answerOk === true) {
+      highlightClass = classes.correct;
+    }
+    if (props.answerOk === false) {
+      highlightClass = classes.wrong;
+    }
+
+    return (
+      <button
+        ref={buttonRef}
+        className={`${classes.findCountryButton} ${highlightClass}`}
+      >
+        {props.name}
+      </button>
+    );
   }
-  if (props.answerOk === false) {
-    highlightClass = classes.wrong;
-  }
-
-  return (
-    <button
-      ref={buttonRef}
-      className={`${classes.findCountryButton} ${highlightClass}`}
-    >
-      {props.name}
-    </button>
-  );
-});
+);
 
 export default FindCountryGameControlButton;
