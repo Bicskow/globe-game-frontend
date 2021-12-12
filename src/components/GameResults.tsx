@@ -29,10 +29,9 @@ const GameResults = () => {
   return (
     <Card className={classes.results}>
       <Fragment>
-        <div className={classes.headerRow}>Country Name</div>
+        <div className={classes.headerRow}>Country</div>
         <div className={classes.headerRow}>Time</div>
         <div className={classes.headerRow}>Answer</div>
-        <div className={classes.headerDivider}></div>
         {questions.map((question, index) => {
           return (
             <Fragment key={index}>
