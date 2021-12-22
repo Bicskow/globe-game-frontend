@@ -1,0 +1,45 @@
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.link {
+  display: block;
+  background-size: cover;
+  height: 3rem;
+  width: 3rem;
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  line-height: 0;
+  font-size: 0;
+  color: transparent;
+}
+
+.link:hover {
+  transform: scale(1.3);
+}
+
+.facebookLink {
+  background-image: url("../../assets/facebook.png");
+}
+
+.twitterLink {
+  background-image: url("../../assets/twitter.png");
+}
+
+.githubLink {
+  background-image: url("../../assets/github.png");
+}
+
+@media (min-width: 40rem) {
+  .link {
+    display: block;
+    background-size: cover;
+    height: 4rem;
+    width: 4rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}

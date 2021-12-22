@@ -3,5 +3,6 @@
   position: relative;
   display: flex;
   background-size: cover;
+  flex-flow: column;
   height: 100%;
 }
