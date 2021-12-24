@@ -25,7 +25,7 @@ export default class CountryGlobe {
   private highlightedCountry: string = "";
   private highlightOnClickEnabled = true;
 
-  private resolution = "50m";
+  private resolution = "110m";
   private countryObjects = [] as THREE.Object3D[];
   private countryData: any;
 
