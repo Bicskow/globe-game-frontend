@@ -10,13 +10,13 @@ const StartGameFooter = () => {
         Github
       </a>
       <a
-        href="https://www.facebook.com/sharer/sharer.php?u=bicskow.pro"
+        href="https://www.facebook.com/sharer/sharer.php?u=https://globegame.azurewebsites.net/"
         className={`${classes.link} ${classes.facebookLink}`}
       >
         Facebook
       </a>
       <a
-        href="https://twitter.com/intent/tweet?url=bicskow.pro"
+        href="https://twitter.com/intent/tweet?url=https://globegame.azurewebsites.net/"
         className={`${classes.link} ${classes.twitterLink}`}
       >
         Twitter
