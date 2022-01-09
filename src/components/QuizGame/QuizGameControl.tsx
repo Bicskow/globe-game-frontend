@@ -5,6 +5,7 @@ import QuizGameControlButton from "./QuizGameControlButton";
 import { useAppSelector } from "../../hooks/redux-hooks";
 import { Fragment } from "react";
 import { GameStep } from "../../store";
+import ReactGA from "react-ga4";
 
 const QuizGameControl = () => {
   const { questions, currentQuestion, gameStep } = useAppSelector(
@@ -19,6 +20,10 @@ const QuizGameControl = () => {
   const handleButtonClicked = () => {
     setClicked(true);
   };
+
+  useEffect(() => {
+    ReactGA.event("QUIZ");
+  }, []);
 
   return (
     <Card className={classes.quizGameControl}>

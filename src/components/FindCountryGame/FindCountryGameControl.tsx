@@ -6,6 +6,7 @@ import { GameStep } from "../../store";
 import FindCountryGameControlButton, {
   ButtonDomProps,
 } from "./FindCountryGameControlButton";
+import ReactGA from "react-ga4";
 
 const FindCountryGameControl = () => {
   const { questions, currentQuestion, gameStep } = useAppSelector(
@@ -54,6 +55,10 @@ const FindCountryGameControl = () => {
     return () => {
       window.removeEventListener("resize", handleResize2);
     };
+  }, []);
+
+  useEffect(() => {
+    ReactGA.event("FINDCOUNTRY");
   }, []);
 
   return (
