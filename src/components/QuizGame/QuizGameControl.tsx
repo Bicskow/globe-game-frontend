@@ -32,6 +32,7 @@ const QuizGameControl = () => {
           questions[currentQuestion].choices.map((choice, index) => (
             <QuizGameControlButton
               disabled={clicked}
+              revealed={clicked}
               onClick={handleButtonClicked}
               key={index}
               name={choice}

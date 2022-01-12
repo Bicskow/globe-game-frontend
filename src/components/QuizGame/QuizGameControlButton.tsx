@@ -1,5 +1,5 @@
 import classes from "./QuizGameControlButton.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks/redux-hooks";
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { gameActions, GameStep } from "../../store";
@@ -7,6 +7,7 @@ import { gameActions, GameStep } from "../../store";
 const QuizGameControlButton: React.FC<{
   name: string;
   disabled: boolean;
+  revealed: boolean;
   onClick: () => void;
 }> = (props) => {
   const [highlightClass, setHighlightClass] = useState("");
@@ -14,6 +15,16 @@ const QuizGameControlButton: React.FC<{
     (state) => state.game
   );
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (props.revealed) {
+      if (props.name === questions[currentQuestion].correctAnswer) {
+        setHighlightClass(classes.correct);
+      }
+    } else {
+      setHighlightClass("");
+    }
+  }, [currentQuestion, questions, props.revealed, props.name]);
 
   const handleButtonClicked = () => {
     if (!props.disabled && gameStep === GameStep.InGame) {
