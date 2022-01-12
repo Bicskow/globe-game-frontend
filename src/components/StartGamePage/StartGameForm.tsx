@@ -53,6 +53,7 @@ const StartGameForm = () => {
         <input
           id="nickname"
           type="text"
+          maxLength={100}
           className={nickNameInputClasses}
           onChange={nickNameChangeHandler}
           onBlur={nickNameBlurHandler}
