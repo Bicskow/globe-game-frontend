@@ -22,7 +22,9 @@ const QuizGameControl = () => {
   };
 
   useEffect(() => {
-    ReactGA.event("QUIZ");
+    if (process.env.NODE_ENV === "production") {
+      ReactGA.event("QUIZ");
+    }
   }, []);
 
   return (

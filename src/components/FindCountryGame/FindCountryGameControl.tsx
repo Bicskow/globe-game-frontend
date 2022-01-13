@@ -58,7 +58,9 @@ const FindCountryGameControl = () => {
   }, []);
 
   useEffect(() => {
-    ReactGA.event("FINDCOUNTRY");
+    if (process.env.NODE_ENV === "production") {
+      ReactGA.event("FINDCOUNTRY");
+    }
   }, []);
 
   return (
