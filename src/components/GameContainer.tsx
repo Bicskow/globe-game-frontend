@@ -1,6 +1,6 @@
 import classes from "./GameContainer.module.css";
 import Game from "./Game";
-import Timer from "./Timer";
+import Timer from "./Timer/Timer";
 import QuizGameControl from "./QuizGame/QuizGameControl";
 import FindCountryGameControl from "./FindCountryGame/FindCountryGameControl";
 import { useEffect } from "react";

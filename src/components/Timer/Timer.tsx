@@ -1,9 +1,9 @@
-import Card from "./Card";
+import Card from "../Card";
 import classes from "./Timer.module.css";
-import useTimer from "../hooks/use-timer";
-import { useAppSelector } from "../hooks/redux-hooks";
+import useTimer from "../../hooks/use-timer";
+import { useAppSelector } from "../../hooks/redux-hooks";
 import { useEffect } from "react";
-import { GameStep } from "../store";
+import { GameStep } from "../../store";
 
 const Timer = () => {
   const { gameStep } = useAppSelector((state) => state.game);
